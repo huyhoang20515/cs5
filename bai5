@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+
+namespace GenericStack
+{
+    // Dinh nghia lop generic MyStack
+    public class MyStack<T>
+    {
+        private List<T> elements = new List<T>();
+
+        // Phuong thuc Push de them phan tu vao ngan xep
+        public void Push(T item)
+        {
+            elements.Add(item);
+        }
+
+        // Phuong thuc Pop de loai bo va tra ve phan tu tren cung cua ngan xep
+        public T Pop()
+        {
+            if (elements.Count == 0)
+            {
+                throw new InvalidOperationException("Ngan xep rong.");
+            }
+
+            T item = elements[elements.Count - 1];
+            elements.RemoveAt(elements.Count - 1);
+            return item;
+        }
+
+        // Phuong thuc kiem tra ngan xep co rong hay khong
+        public bool IsEmpty()
+        {
+            return elements.Count == 0;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Kiem tra voi MyStack<int>
+            MyStack<int> stackInt = new MyStack<int>();
+            stackInt.Push(10);
+            stackInt.Push(20);
+            stackInt.Push(30);
+            Console.WriteLine("Gia tri Pop tu MyStack<int>: " + stackInt.Pop());
+            Console.WriteLine("Gia tri Pop tu MyStack<int>: " + stackInt.Pop());
+
+            // Kiem tra voi MyStack<string>
+            MyStack<string> stackString = new MyStack<string>();
+            stackString.Push("apple");
+            stackString.Push("banana");
+            stackString.Push("cherry");
+            Console.WriteLine("Gia tri Pop tu MyStack<string>: " + stackString.Pop());
+            Console.WriteLine("Gia tri Pop tu MyStack<string>: " + stackString.Pop());
+
+            // Kiem tra voi MyStack<double>
+            MyStack<double> stackDouble = new MyStack<double>();
+            stackDouble.Push(1.1);
+            stackDouble.Push(2.2);
+            stackDouble.Push(3.3);
+            Console.WriteLine("Gia tri Pop tu MyStack<double>: " + stackDouble.Pop());
+            Console.WriteLine("Gia tri Pop tu MyStack<double>: " + stackDouble.Pop());
+        }
+    }
+}
