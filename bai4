@@ -1,0 +1,36 @@
+using System;
+
+namespace GenericMaxFunction
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Kiem tra voi so nguyen
+            int soNguyen1 = 5;
+            int soNguyen2 = 10;
+            Console.WriteLine($"Gia tri lon nhat giua {soNguyen1} va {soNguyen2} la: {Max(soNguyen1, soNguyen2)}");
+
+            // Kiem tra voi so thuc
+            double soThuc1 = 15.5;
+            double soThuc2 = 10.3;
+            Console.WriteLine($"Gia tri lon nhat giua {soThuc1} va {soThuc2} la: {Max(soThuc1, soThuc2)}");
+
+            // Kiem tra voi chuoi
+            string chuoi1 = "apple";
+            string chuoi2 = "orange";
+            Console.WriteLine($"Gia tri lon nhat giua '{chuoi1}' va '{chuoi2}' la: '{Max(chuoi1, chuoi2)}'");
+
+            // Kiem tra voi ky tu
+            char kyTu1 = 'a';
+            char kyTu2 = 'z';
+            Console.WriteLine($"Gia tri lon nhat giua '{kyTu1}' va '{kyTu2}' la: '{Max(kyTu1, kyTu2)}'");
+        }
+
+        // Ham Max generic
+        static T Max<T>(T giaTri1, T giaTri2) where T : IComparable<T>
+        {
+            return giaTri1.CompareTo(giaTri2) > 0 ? giaTri1 : giaTri2;
+        }
+    }
+}
