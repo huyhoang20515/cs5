@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+
+namespace SimpleDictionary
+{
+    class Program
+    {
+        static Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+        static void Main(string[] args)
+        {
+            // Them mot so tu vao tu dien
+            dictionary.Add("hello", "xin chao");
+            dictionary.Add("goodbye", "tam biet");
+            dictionary.Add("thank you", "cam on");
+            dictionary.Add("yes", "co");
+            dictionary.Add("no", "khong");
+
+            while (true)
+            {
+                Console.WriteLine("Chon mot tuy chon:");
+                Console.WriteLine("1. Them tu moi");
+                Console.WriteLine("2. Tim nghia cua tu");
+                Console.WriteLine("3. Thoat");
+                Console.Write("Lua chon cua ban: ");
+
+                int choice;
+                if (int.TryParse(Console.ReadLine(), out choice))
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            AddWord();
+                            break;
+                        case 2:
+                            TranslateWord();
+                            break;
+                        case 3:
+                            return;
+                        default:
+                            Console.WriteLine("Lua chon khong hop le. Vui long thu lai.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Lua chon khong hop le. Vui long thu lai.");
+                }
+            }
+        }
+
+        static void AddWord()
+        {
+            Console.Write("Nhap tu tieng Anh: ");
+            string englishWord = Console.ReadLine();
+
+            Console.Write("Nhap nghia tieng Viet: ");
+            string vietnameseMeaning = Console.ReadLine();
+
+            if (!dictionary.ContainsKey(englishWord))
+            {
+                dictionary.Add(englishWord, vietnameseMeaning);
+                Console.WriteLine("Tu da duoc them thanh cong.");
+            }
+            else
+            {
+                Console.WriteLine("Tu nay da ton tai trong tu dien.");
+            }
+        }
+
+        static void TranslateWord()
+        {
+            Console.Write("Nhap tu tieng Anh can tim: ");
+            string englishWord = Console.ReadLine();
+
+            if (dictionary.TryGetValue(englishWord, out string vietnameseMeaning))
+            {
+                Console.WriteLine($"Nghia tieng Viet: {vietnameseMeaning}");
+            }
+            else
+            {
+                Console.WriteLine("Khong tim thay tu trong tu dien.");
+            }
+        }
+    }
+}
