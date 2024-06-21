@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+
+namespace DictionaryExample
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Tao mot Dictionary
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+
+            // Them cac cap key-gia tri vao Dictionary
+            dictionary.Add("ID", 101);
+            dictionary.Add("Name", "John Doe");
+            dictionary.Add("Age", 30);
+            dictionary.Add("Country", "USA");
+
+            // Kiem tra xem mot key co ton tai trong Dictionary hay khong
+            string keyToCheck = "Age";
+            if (dictionary.ContainsKey(keyToCheck))
+            {
+                Console.WriteLine($"Key '{keyToCheck}' ton tai trong Dictionary.");
+            }
+            else
+            {
+                Console.WriteLine($"Key '{keyToCheck}' khong ton tai trong Dictionary.");
+            }
+
+            // Su dung TryGetValue de truy xuat gia tri lien ket voi mot key nhat dinh mot cach an toan
+            string keyToRetrieve = "Name";
+            if (dictionary.TryGetValue(keyToRetrieve, out object value))
+            {
+                Console.WriteLine($"Gia tri lien ket voi key '{keyToRetrieve}' la: {value}");
+            }
+            else
+            {
+                Console.WriteLine($"Key '{keyToRetrieve}' khong ton tai trong Dictionary.");
+            }
+
+            // Su dung vong lap foreach de lap qua cac muc KeyValuePair<TKey, TValue> trong Dictionary va in ra
+            Console.WriteLine("\nDanh sach cac cap key-gia tri trong Dictionary:");
+            foreach (KeyValuePair<string, object> kvp in dictionary)
+            {
+                Console.WriteLine($"Key: {kvp.Key}, Gia tri: {kvp.Value}");
+            }
+        }
+    }
+}
