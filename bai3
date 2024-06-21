@@ -1,0 +1,117 @@
+using System;
+using System.Collections;
+
+namespace ProductManagement
+{
+    class Product
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public double Price { get; set; }
+
+        public Product(string name, string description, double price)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+        }
+
+        public override string ToString()
+        {
+            return $"Ten: {Name}, Mo ta: {Description}, Gia: {Price:C}";
+        }
+    }
+
+    class Program
+    {
+        static ArrayList products = new ArrayList();
+
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Console.WriteLine("Chon mot tuy chon:");
+                Console.WriteLine("1. Them san pham moi");
+                Console.WriteLine("2. Hien thi danh sach san pham");
+                Console.WriteLine("3. Tim san pham theo ten");
+                Console.WriteLine("4. Thoat");
+                Console.Write("Lua chon cua ban: ");
+
+                int choice;
+                if (int.TryParse(Console.ReadLine(), out choice))
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            AddProduct();
+                            break;
+                        case 2:
+                            DisplayProducts();
+                            break;
+                        case 3:
+                            SearchProductByName();
+                            break;
+                        case 4:
+                            return;
+                        default:
+                            Console.WriteLine("Lua chon khong hop le. Vui long thu lai.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Lua chon khong hop le. Vui long thu lai.");
+                }
+            }
+        }
+
+        static void AddProduct()
+        {
+            Console.Write("Nhap ten san pham: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Nhap mo ta san pham: ");
+            string description = Console.ReadLine();
+
+            Console.Write("Nhap gia san pham: ");
+            double price;
+            while (!double.TryParse(Console.ReadLine(), out price))
+            {
+                Console.WriteLine("Gia khong hop le. Vui long nhap lai.");
+            }
+
+            products.Add(new Product(name, description, price));
+            Console.WriteLine("San pham da duoc them thanh cong.");
+        }
+
+        static void DisplayProducts()
+        {
+            Console.WriteLine("Danh sach san pham:");
+            foreach (Product product in products)
+            {
+                Console.WriteLine(product);
+            }
+        }
+
+        static void SearchProductByName()
+        {
+            Console.Write("Nhap ten san pham can tim: ");
+            string name = Console.ReadLine();
+
+            bool found = false;
+            foreach (Product product in products)
+            {
+                if (product.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine(product);
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("Khong tim thay san pham co ten nhu vay.");
+            }
+        }
+    }
+}
