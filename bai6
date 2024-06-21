@@ -1,0 +1,63 @@
+using System;
+using System.Collections;
+
+namespace HashtableExample
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Tao mot Hashtable
+            Hashtable hashtable = new Hashtable();
+
+            // Them cac cap key-gia tri vao Hashtable
+            hashtable.Add("ID", 101);
+            hashtable.Add("Name", "John Doe");
+            hashtable.Add("Age", 30);
+            hashtable.Add("Country", "USA");
+
+            // Kiem tra xem mot key co ton tai trong Hashtable hay khong
+            string keyToCheck = "Age";
+            if (hashtable.ContainsKey(keyToCheck))
+            {
+                Console.WriteLine($"Key '{keyToCheck}' ton tai trong Hashtable.");
+            }
+            else
+            {
+                Console.WriteLine($"Key '{keyToCheck}' khong ton tai trong Hashtable.");
+            }
+
+            // Kiem tra xem mot gia tri co ton tai trong Hashtable hay khong
+            object valueToCheck = "John Doe";
+            if (hashtable.ContainsValue(valueToCheck))
+            {
+                Console.WriteLine($"Gia tri '{valueToCheck}' ton tai trong Hashtable.");
+            }
+            else
+            {
+                Console.WriteLine($"Gia tri '{valueToCheck}' khong ton tai trong Hashtable.");
+            }
+
+            // Truy xuat gia tri lien ket voi mot key nhat dinh
+            string keyToRetrieve = "Name";
+            if (hashtable.ContainsKey(keyToRetrieve))
+            {
+                Console.WriteLine($"Gia tri lien ket voi key '{keyToRetrieve}' la: {hashtable[keyToRetrieve]}");
+            }
+
+            // Su dung vong lap foreach de lap qua cac key va in ra
+            Console.WriteLine("\nDanh sach cac key trong Hashtable:");
+            foreach (var key in hashtable.Keys)
+            {
+                Console.WriteLine(key);
+            }
+
+            // Su dung vong lap foreach de lap qua cac gia tri va in ra
+            Console.WriteLine("\nDanh sach cac gia tri trong Hashtable:");
+            foreach (var value in hashtable.Values)
+            {
+                Console.WriteLine(value);
+            }
+        }
+    }
+}
